@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto px-4 py-12">
+    <div class="bg-white p-8 rounded-2xl shadow-lg border border-gray-100">
+        <h2 class="text-2xl font-bold mb-6 text-gray-900">Edit Profile</h2>
+        
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+            
+            <div class="border-b pb-6 mb-6">
+                <h3 class="text-lg font-semibold mb-4 text-indigo-600">Account Details</h3>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Username</label>
+                    {{ u_form.username }}
+                </div>
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    {{ u_form.email }}
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-lg font-semibold mb-4 text-indigo-600">Profile Info</h3>
+                
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-20 h-20 bg-gray-100 rounded-full overflow-hidden">
+                         {% if user.userprofile.profile_image %}
+                            <img src="{{ user.userprofile.profile_image.url }}" class="w-full h-full object-cover">
+                        {% else %}
+                            <span class="text-3xl flex items-center justify-center h-full">👤</span>
+                        {% endif %}
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Change Photo</label>
+                        {{ p_form.profile_image }}
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+                    {{ p_form.bio }}
+                    <p class="text-xs text-gray-500 mt-1">Tell the world a little bit about yourself.</p>
+                </div>
+            </div>
+
+            <div class="flex gap-4 pt-4">
+                <button type="submit" class="flex-1 bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition shadow-md">
+                    Save Changes
+                </button>
+                <a href="{% url 'accounts:profile' %}" class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg font-medium hover:bg-gray-200 transition">
+                    Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

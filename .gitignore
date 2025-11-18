@@ -1,0 +1,29 @@
+# --- Python & Django ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.log
+*.pot
+
+# --- Database (Local DB GitHub par nahi jaana chahiye) ---
+db.sqlite3
+
+# --- Environment Variables (SENSITIVE - Kabhi upload na karein) ---
+.env
+
+# --- Static & Media Files ---
+# Media files user uploads hote hain, code ka hissa nahi
+/media/
+# Staticfiles wo folder hai jo 'collectstatic' command banati hai
+/staticfiles/
+
+# --- Virtual Environments ---
+env/
+venv/
+.venv/
+
+# --- OS & Editor Files ---
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/

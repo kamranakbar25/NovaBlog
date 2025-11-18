@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<article class="max-w-4xl mx-auto px-4 py-12">
+    <div class="mb-8 text-center" data-aos="fade-down">
+        <span class="bg-indigo-100 text-indigo-800 px-3 py-1 rounded-full text-sm font-semibold">{{ post.category.name }}</span>
+        <h1 class="text-4xl md:text-5xl font-bold mt-4 mb-4 text-gray-900">{{ post.title }}</h1>
+        <div class="flex items-center justify-center space-x-4 text-gray-500 text-sm">
+            <span class="flex items-center gap-2">
+                By 
+                <a href="{% url 'accounts:public_profile' post.author.username %}" class="font-bold text-indigo-600 hover:underline">
+                    {{ post.author.username }}
+                </a>
+            </span>
+            <span>•</span>
+            <span>{{ post.created_at|date:"F d, Y" }}</span>
+        </div>
+    </div>
+
+    {% if post.featured_image %}
+    <div class="rounded-3xl overflow-hidden shadow-2xl mb-10" data-aos="zoom-in">
+        <img src="{{ post.featured_image.url }}" class="w-full object-cover max-h-[500px]">
+    </div>
+    {% endif %}
+
+    <div class="prose prose-lg prose-indigo mx-auto text-gray-700 leading-relaxed" data-aos="fade-up">
+        {{ post.body|safe }}
+    </div>
+
+    <hr class="my-12 border-gray-200">
+
+    <div class="max-w-2xl mx-auto">
+        <h3 class="text-2xl font-bold mb-6">Comments ({{ comments.count }})</h3>
+        
+        {% for comment in comments %}
+        <div class="bg-white p-4 rounded-xl shadow-sm mb-4 border border-gray-100">
+            <div class="flex justify-between items-center mb-2">
+                <span class="font-bold text-gray-800">{{ comment.name }}</span>
+                <span class="text-xs text-gray-400">{{ comment.created_at|timesince }} ago</span>
+            </div>
+            <p class="text-gray-600">{{ comment.body }}</p>
+        </div>
+        {% endfor %}
+
+        <div class="bg-gray-50 p-6 rounded-2xl mt-8">
+            <h4 class="text-lg font-bold mb-4">Leave a comment</h4>
+            <form method="post">
+                {% csrf_token %}
+                <div class="space-y-4">
+                    {{ form.name }}
+                    {{ form.body }}
+                    <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg hover:bg-indigo-700 transition">Post Comment</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</article>
+{% endblock %}
