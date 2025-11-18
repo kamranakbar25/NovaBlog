@@ -27,3 +27,6 @@ venv/
 Thumbs.db
 .vscode/
 .idea/
+
+
+postgresql://novablog_user:Fz6dqIlMlFPugkvCxQXKjimX5Yro8Syy@dpg-d4ebj9idbo4c73de0dp0-a/novablog_db

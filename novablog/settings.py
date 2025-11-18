@@ -122,7 +122,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'default_insecure_key') # default key 
 
 # DEBUG aur ALLOWED_HOSTS ko production ke liye set karein
 DEBUG = os.environ.get('DEBUG', 'True') == 'True' # Live par False hoga
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'your-app-name.onrender.com', '.render.com'] # <--- ADD/UPDATE THIS
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.onrender.com'] # <--- ADD/UPDATE THIS
 
 
 # File: novablog/settings.py
